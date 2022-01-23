@@ -103,7 +103,7 @@ public:
             if(l == -1) l= -1;
             if(r== -1)  r= n;
             
-            int w = (r-1)-(l+1)+1;
+            int w = (r-l)-1;
             
             
             
