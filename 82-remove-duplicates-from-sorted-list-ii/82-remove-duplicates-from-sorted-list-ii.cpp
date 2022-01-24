@@ -6,45 +6,42 @@
  *     ListNode() : val(0), next(nullptr) {}
  *     ListNode(int x) : val(x), next(nullptr) {}
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
- * };
+ * ewweqA   };
  */
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
        
-        ListNode* temp = new ListNode(0);
-        temp->next = head; // 0 1 2 3 3 4 4 5
-        
-        ListNode* prev = temp; // 0 1 2 3 3 4 4 5
-        
-      //  return prev;
-        
-       
-        
-        while(head !=NULL)
-        { 
-            if(head->next != NULL && head->val == head->next->val)
-           {
-            while(head->next!=NULL && head->val == head->next->val)
+     
+        ListNode*dummy = new ListNode(0);
+        dummy->next = head;
+        ListNode* prev = dummy;
+        while(head!= NULL)
+        {
+            if(head->next!= NULL && head->val == head->next->val)
             {
-                head = head->next;
+                while(head->next!= NULL && head->val == head->next->val)
+                {
+                    head = head->next;
+                }
+                prev->next = head->next;
             }
-               
-              prev->next = head->next;
-                
-          }
-         else
-           prev = prev->next;
-         
-           head = head->next;
+            else
+            {
+                prev = prev->next;
+            }
             
-            
+            head = head->next;
             
             
         }
         
-        return temp->next;
         
+        return dummy->next;
+        
+  
         
     }
+   
+    
 };
