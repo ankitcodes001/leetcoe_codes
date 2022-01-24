@@ -26,6 +26,30 @@ public:
         return ans;
         
         */
+        
+        // in naive approach memory limit can exceed
+        // that's why we seperately deal with digits and letter
+        // approch is to calculate the total length of decoded string
+        // and then taking mod of k % size  will shrink our k value to map to
+        // its actual character which is not digit
+        
+        // psedo code
+        
+       
+        //for(i to n)
+        // if(isalpha(s[i])) size++;
+          // else size = size *(s[i]-'0');
+        
+        
+        // for(n to i)
+        // k =k%size;
+        // if(k==0 && isalpha(s[i]))
+          // ans+=s[i]
+        // break;
+        // if(digit) size = size/(s[i]-'0')
+         //   else size--
+        
+        
         int n = s.size();
         long long int size = 0;
         for(int i  =0;i<n;i++)
@@ -52,11 +76,8 @@ public:
                 size--;
          
         }
-        
-        
-        
-        
-        
+    
+       
         return ans;
         
         
