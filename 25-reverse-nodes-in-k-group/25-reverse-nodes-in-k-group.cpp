@@ -15,7 +15,7 @@ public:
         for(int i =0;i<k;i++)
         {
             
-            if(temp2 == NULL)
+            if(!temp2)
                 return head;
             temp2 = temp2->next;
             
