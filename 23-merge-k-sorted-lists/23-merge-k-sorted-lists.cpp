@@ -32,9 +32,9 @@ public:
         ListNode*h = ptr;
         int i =0;
         while(i<v.size())
-       
         {
-            h->next = new ListNode(v[i++]);
+           ListNode* node = new ListNode(v[i++]);
+            h->next = node;
             h = h->next;
            
             
