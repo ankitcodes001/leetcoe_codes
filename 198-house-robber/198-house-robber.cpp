@@ -1,30 +1,22 @@
 class Solution {
 public:
-    // memorization
-    // time complexity = n;
-    // space  = o(n)
-    
-   
-    int find(vector<int>&nums,int i,vector<int>&dp)
-    {
-        if(i>=nums.size())
-            return 0;
-        if(dp[i]!=-1)
-            return dp[i];
-        
-      return  dp[i] = max(nums[i]+find(nums,i+2,dp),find(nums,i+1,dp));
-        
-    }
+    // dp
+    //time = o(n)
+    //space = o(n)
     
     int rob(vector<int>& nums) {
-       
-       vector<int> dp(nums.size()+1,-1);
-    
-        int i  =0;
-        return find(nums,i,dp);
-        
-        
-       
+     
+     if(nums.size() ==1)return nums[0];
+     int dp[nums.size()];
+     dp[0]=nums[0];
+     dp[1]= max(nums[0],nums[1]);
+     for(int i =2;i<nums.size();i++)
+     {
+       dp[i] = max(dp[i-1],dp[i-2]+nums[i]);
+         
+     }
+      
+        return dp[nums.size()-1];
         
         
     }
