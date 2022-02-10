@@ -1,6 +1,13 @@
 class Solution {
 public:
     int minimumMountainRemovals(vector<int>& nums) {
+        
+        // approach
+        // lis[n]
+        // lds[n]
+        // max(lds[i]+lis[i]-1,ans) // maximum biotonic_length
+        // n- maximum_biotonic length
+        
        int n = nums.size();
         int lis[n];
         for(int i =0;i<n;i++)
