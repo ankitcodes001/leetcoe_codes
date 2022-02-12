@@ -6,7 +6,7 @@ public:
         
          int n = nums.size();
        vector<int>dp(n,1),way(n,1);
-        int ans= 1;
+        int ans= 0;
       
         for(int i =0;i<n;i++)
         {
