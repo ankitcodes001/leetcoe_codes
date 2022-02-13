@@ -2,27 +2,17 @@ class Solution {
 public:
     vector<int> countBits(int n) {
         
-        vector<int>ans;
-        
-        for(int i  = 0;i<=n;i++)
+       
+       vector<int>dp(n+1);
+        dp[0]=0;
+        for(int i  =1;i<=n;i++)
         {
             
-            long mask  = 0;
-            int num = i;
-            int c =0;
-            for(int j =0;j<32;j++)
-            {
-                if(i&(1<<j))
-                    c++;
-                
-                
-            }
-            ans.push_back(c);
-            
+            dp[i] = dp[i/2]+i%2;
             
         }
         
-        return ans;
+        return dp;
         
         
     }
