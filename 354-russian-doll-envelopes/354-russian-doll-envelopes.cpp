@@ -12,6 +12,7 @@ public:
         //approach
         // sort on height    
         
+       
         
         //sorting the width
         sort(e.begin(),e.end(),comp);
@@ -39,6 +40,10 @@ public:
         }
         
         return dp.size();
+        
+        // complexity
+       // time  = o(nlogn +nlogn) == o(nlogn)
+        //space = o(n+n) = o(n)
         
     }
 };
