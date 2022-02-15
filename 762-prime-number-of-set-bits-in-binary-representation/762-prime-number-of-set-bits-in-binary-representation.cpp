@@ -1,11 +1,25 @@
 class Solution {
 public:
+    // sieve
     
     bool isPrime(int n)
     {
-         if( n==2 || n==3 || n== 7 ||n==11||n==13||n==17||n==19 || n==5 || n==23|| n== 29)
-           return true;
-        return false;
+       int n1 =100;
+        vector<bool>p(n1+1,true);
+          p[0]= p[1] = false;
+        for(int i =2;i*i<=n1;i++)
+        {
+            if(p[i])
+            {   for(int x = i*i;x<=n1;x+=i)
+                p[x] = false;
+            }
+            
+            
+        }
+        
+        return p[n];
+        
+        
     }
     
     int countPrimeSetBits(int left, int right) {
