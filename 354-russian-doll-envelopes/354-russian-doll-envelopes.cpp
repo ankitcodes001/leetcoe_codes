@@ -19,31 +19,26 @@ public:
         
         // Lis on height
         int n = e.size();
-        vector<int>h;
-        for(int i =0;i<n;i++)
-        {
-            h.push_back(e[i][1]);
-        }
         
         
         
         vector<int>dp;
         for(int i =0;i<n;i++)
         {
-            auto it = lower_bound(dp.begin(),dp.end(),h[i]);
+            auto it = lower_bound(dp.begin(),dp.end(),e[i][1]);
             if(it == dp.end())
             {
-                dp.push_back(h[i]);
+                dp.push_back(e[i][1]);
             }
             else
-                *it = h[i];
+                *it = e[i][1];
         }
         
         return dp.size();
         
         // complexity
        // time  = o(nlogn +nlogn) == o(nlogn)
-        //space = o(n+n) = o(n)
+        
         
     }
 };
