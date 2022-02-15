@@ -2,30 +2,30 @@ class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
         
-        // NAIVE DP APPROACH
-        // O(N^2)
+        // optimal DP APPROACH
+        // O(Nlongn)
         // CALCULATED LONGEST INCREASING SUBSEQUENCE ENDING AT EVERY POINT
-       
-        int n = nums.size();
-        int dp[n];
-        int ans= 0;
-        for(int i =0;i<n;i++)
-        {
-            int maxi = 0;
-            for(int j = 0;j<i;j++)
-            { 
-                if(nums[j]<nums[i])
-                {
-                    maxi = max(maxi,dp[j]);
-                    
-                }
-                
-            }
-            
-            dp[i] = maxi+1;
-            ans = max(ans,dp[i]);
-        }
+       int n = nums.size();
+        vector<int>dp;
+        int ans = 0;
+       for(int i  =0;i<n;i++)
+       {  
+           
+           auto it  = lower_bound(dp.begin(),dp.end(),nums[i]);
+           if(it == dp.end())
+           {
+               dp.push_back(nums[i]);
+               
+           }
+           else
+               *it = nums[i];
+               
+           
+           
+           
+       }
         
-        return ans;      
+       return dp.size();
+        
     }
 };
