@@ -1,68 +1,40 @@
 class Solution {
 public:
-    int longestPalindromeSubseq(string s) {
+    int longestPalindromeSubseq(string s1) {
         
-        // APPROACH 
-        
-      //  string  = c1 + m + c2
-       //if(c1 == c2) 
-         //  dp[i][j] = 2 + dp[i+1][j-1] // 2+lps()
-         //else
-         //{
-           //  dp[i][j] = max(dp[i][j-1],dp[i+1][j]);
-         //}
-        
-        int n = s.size();
-        int dp[n][n];
-        for(int g =0;g<n;g++)
+        string s2 = s1;
+        reverse(s1.begin(),s1.end());
+        int n = s1.size();
+        int dp[n+1][n+1];
+        for(int i =0;i<=n;i++)
         {
-            int i  =0;
-            int j =g;
-            while(j<n)
+            for(int j =0;j<=n;j++)
             {
-                if(g==0)
-                  dp[i][j] = 1;
-                else if(g == 1)
+                if(i==0 || j==0)
+                    dp[i][j] =0;
+            }
+        }
+        
+       int ans =0;
+        for(int i =1;i<=n;i++)
+        {
+            for(int j =1;j<=n;j++)
+            {
+                if(s1[i-1] == s2[j-1])
                 {
-                    dp[i][j] = (s[i] == s[j])?2:1;
-                    
+                    dp[i][j] = 1+dp[i-1][j-1];
                 }
                 else
                 {
-                    if(s[i] == s[j])
-                    {
-                        dp[i][j] = 2+dp[i+1][j-1];
-                    }
-                    else
-                    {
-                        dp[i][j] = max(dp[i][j-1],dp[i+1][j]);
-                    }
-                    
-                    
-                    
+                    dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
                 }
                 
-                
-                
-           i++;
-                j++;
-                
-                
-                
-                
+                ans  = max(ans,dp[i][j]);
             }
-            
-            
-            
         }
         
-        
-        
-        return dp[0][n-1];
-        
-        
-        
-        
+       
+        return ans;
         
         
     }
