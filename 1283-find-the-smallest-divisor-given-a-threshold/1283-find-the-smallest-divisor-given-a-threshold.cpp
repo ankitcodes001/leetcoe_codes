@@ -3,7 +3,7 @@ public:
     int smallestDivisor(vector<int>& nums, int t) {
         
         int l  = 1;
-        int r  = 10000001;
+        int r  = *max_element(nums.begin(),nums.end());
         
         int ans  =0;
         while(l<=r)
