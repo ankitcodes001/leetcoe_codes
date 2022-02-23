@@ -1,27 +1,33 @@
 class Solution {
 public:
-    
-    unordered_set<string>mp;
     vector<string>ans;
+    unordered_set<string>dict;
     
-    void fun(int ind ,string s,string cur)
+    void fun(string s,string curr, int i)
     {
-        if(ind == s.size())
-        {
-            cur.pop_back();
-            ans.push_back(cur);
+        if(i==s.size())
+        {  
+            curr.pop_back();
+            ans.push_back(curr);
             return;
         }
         
-        string t = "";
-        for(int i = ind ;i<s.size();i++)
+        string temp  =  "";
+        
+       for(int j  = i;j<s.size();j++)
+       {
+        // add character 
+        // if presenst add space and funcall();
+        temp+=s[j];
+        if(dict.find(temp)!=dict.end())
         {
-            t+= s[i];
-            if(mp.find(t)!= mp.end())
-            {
-                fun(i+1,s,cur+t+" ");
-            }
+            fun(s,curr+temp+" ",j+1);
         }
+           
+       
+       }
+        
+        
         
         
         
@@ -29,18 +35,19 @@ public:
         
     }
     
-    vector<string> wordBreak(string s, vector<string>& word) {
     
-        for(auto x : word)
-        {
-            mp.insert(x);
-        }
+    vector<string> wordBreak(string s, vector<string>& wordDict) {
+    
+     for(auto x : wordDict)
+     {
+         dict.insert(x);
+     }
         
-        string cur = "";
+     fun(s,"",0);   
         
-        fun(0,s,cur);
+     return ans;   
         
-        return ans;
+        
         
         
         
