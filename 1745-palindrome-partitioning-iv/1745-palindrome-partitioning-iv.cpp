@@ -32,10 +32,10 @@ public:
         }
          
         // check palindromes for i to j where i =0 and j = n-1
-        // and to check existence of three non empty subtrings we need k variable
-        // (i to k) and (k+1 to j)
+        // and to check existence of three non empty subtrings we need to
+        // check if(0,i) (i+1,j) (j+1, n-1) exists;
         
-      for(int i = 0; i < n - 2; ++i) {
+      for(int i = 0; i < n; ++i) {
             for(int j = i + 1; j < n - 1; ++j) {
                 if(dp[0][i] && dp[i + 1][j] && dp[j + 1][n - 1]) return true;
             }
