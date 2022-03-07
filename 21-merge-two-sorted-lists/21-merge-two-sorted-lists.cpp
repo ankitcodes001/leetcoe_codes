@@ -11,46 +11,58 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-    
-        //time complexity = 0(n)
-        // space complexity = o(n)
+    // time complexity = o(n)
+        // space = o(1);
         
-        ListNode*temp = list1;
-        ListNode*temp2 = list2;
-        vector<int>v;
-        while(temp)
+       ListNode*p1= list1;
+       ListNode*p2 = list2;
+       ListNode*dummy = new ListNode(0);
+       ListNode*p3 = dummy;
+       // int n=0,m=0;
+       /* while(p1)
         {
-            v.push_back(temp->val);
-            temp = temp->next;
+            p1 = p1->next;
+            n++;
         }
-        while(temp2)
+        while(p2)
         {
-            v.push_back(temp2->val);
-            temp2 = temp2->next;
+            p2 = p2->next;
+            m++;
         }
-        sort(v.begin(),v.end());
+       */ 
         
-        ListNode*ans = new ListNode();
-        ListNode*p = ans;
-        
-        for(auto x : v)
+        while(p1 && p2)
         {
-            ListNode*node = new ListNode(x);
-          
-            p->next = node;
-            p = p->next;
-    
+            if(p1->val <= p2->val)
+            {
+                p3->next = p1;
+                p1= p1->next;
+            }
+            else
+            {
+                
+                p3->next = p2;
+                p2 = p2->next;
+                
+            }
+            
+            p3 = p3->next;
         }
         
+        while(p1)
+        {
+            p3->next = p1;
+            p1 = p1->next;
+            p3 = p3->next;
+        }
+        while(p2)
+        {
+            p3->next = p2;
+            p2 = p2->next;
+            p3 = p3->next;
+        }
         
-        
-        
-        
-        
-        return ans->next;
-        
-        
-        
+        return dummy->next;
     
     }
 };
