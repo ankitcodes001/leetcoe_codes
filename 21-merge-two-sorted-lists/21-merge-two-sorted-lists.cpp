@@ -10,59 +10,30 @@
  */
 class Solution {
 public:
-    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-    // time complexity = o(n)
-        // space = o(1);
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
         
-       ListNode*p1= list1;
-       ListNode*p2 = list2;
-       ListNode*dummy = new ListNode(0);
-       ListNode*p3 = dummy;
-       // int n=0,m=0;
-       /* while(p1)
-        {
-            p1 = p1->next;
-            n++;
-        }
-        while(p2)
-        {
-            p2 = p2->next;
-            m++;
-        }
-       */ 
+        //time complexity = o(n)
+         
+        if(l1 == NULL)
+            return l2;
+        if(l2 == NULL)
+          return l1;
         
-        while(p1 && p2)
+       
+        if(l1->val <= l2->val)
         {
-            if(p1->val <= p2->val)
-            {
-                p3->next = p1;
-                p1= p1->next;
-            }
-            else
-            {
-                
-                p3->next = p2;
-                p2 = p2->next;
-                
-            }
             
-            p3 = p3->next;
+            l1->next = mergeTwoLists(l1->next,l2);
+            return l1;
+            
+        }
+        else
+        {
+             
+            l2->next = mergeTwoLists(l1,l2->next);
+            return l2;
         }
         
-        while(p1)
-        {
-            p3->next = p1;
-            p1 = p1->next;
-            p3 = p3->next;
-        }
-        while(p2)
-        {
-            p3->next = p2;
-            p2 = p2->next;
-            p3 = p3->next;
-        }
         
-        return dummy->next;
-    
     }
 };
