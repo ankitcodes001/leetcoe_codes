@@ -1,5 +1,9 @@
 class Solution {
 public:
+    
+    
+    // space  = O(2^n)+O(n)
+    // time  = O(2^n)
     vector<vector<int>>v;
     vector<int>temp;
     void fun(vector<int>&a,int t,int i)
