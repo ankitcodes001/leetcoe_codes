@@ -1,7 +1,12 @@
 class Solution {
 public:
+    
+    
+    
+    // space = o(2^n)
+    //time = o(2^n)
     vector<vector<int>>v;
-    //vector<int>temp;
+    vector<int>temp;
     void fun(vector<int>&nums,int i,vector<int>temp)
     {
         if(i == nums.size())
