@@ -10,24 +10,19 @@ public:
         //  time complexity - o(n)
         // space = o(1);
         
-        string s(n,'a');
-        // since k is greater or equals to n
+        
+        string temp(n,'a');
         k-=n;
-        
         int i = n-1;
-        
-        while(i>=0)
+        while(k>0)
         {
-            int temp = min(25,k);
-            s[i]+=temp;
-            k-=temp;
+            int t = min(25,k);
+            temp[i]+=t;
+            k-=t;
             i--;
             
-            
         }
-        
-        return s;
-        
+        return temp;
         
     }
 };
