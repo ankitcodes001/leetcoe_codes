@@ -1,43 +1,39 @@
 class Solution {
 public:
+   
+    int dp[300+1][5000+1];
+    
+    
+    int countWays(int t,vector<int>&coin,int n)
+    {
+        if(n==0 || t == 0)
+            return n == 0? 0:1;
+        if(dp[n][t]!= -1)
+            return dp[n][t];
+        
+        if(coin[n-1]>t)
+        {
+            return dp[n][t] = countWays(t,coin,n-1);
+        }
+        else
+        
+        return dp[n][t] = countWays(t,coin,n-1)+countWays(t-coin[n-1],coin,n); 
+        
+            
+        
+        
+        
+    }
+    
+    
+    
     int change(int t, vector<int>& coin) {
-        int n = coin.size();
         
-        vector<vector<int>>dp(n+1,vector<int>(t+1));
+    
+    memset(dp,-1,sizeof(dp)) ;
+    int n = coin.size();
+    return countWays(t,coin,n);    
         
-        for(int i = 0;i<=n;i++)
-        {
-            for(int j =0;j<=t;j++)
-            {
-                if(i == 0)
-                {
-                    dp[i][j] = 0;
-                }
-                if(j == 0)
-                    dp[i][j] = 1;
-                
-                if(i == 0 && j==0)
-                    dp[i][j] =1;
-                
-                
-            }
-        }
-        
-        for(int i = 1;i<=n;i++)
-        {
-            for(int j = 1;j<=t;j++)
-            {
-                if(coin[i-1]<=j)
-                {
-                    dp[i][j] = dp[i-1][j]+dp[i][j-coin[i-1]];
-                }
-                else
-                    dp[i][j] = dp[i-1][j];
-            }
-        }
-        
-        
-        return dp[n][t];
         
         
         
