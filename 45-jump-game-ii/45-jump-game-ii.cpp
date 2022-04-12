@@ -1,26 +1,45 @@
 class Solution {
 public:
+    
+    long long fun(vector<int>&nums,int curr,vector<long long>&dp,int des)
+    {
+        if(curr == des)
+            return 0;
+        
+        if(dp[curr]!=-1)
+            return dp[curr];
+        
+       long long  temp  = INT_MAX;
+        for(int i = 1;i<=nums[curr];i++)
+        {
+            if(curr+i>des)
+                break;
+            
+            temp = min(temp,1+fun(nums,curr+i,dp,des));
+             
+        }
+        
+        dp[curr] = temp;
+        
+        return temp;
+        
+        
+        
+        
+        
+    }
+    
+    
     int jump(vector<int>& nums) {
         //greedy ---> o(n)
         // space  =  o(1)
         
-        int curr_reach =0;
-        int max_reach  =0;
-        int step = 0;
-        for(int i = 0;i<nums.size()-1;i++)
-        {
-            max_reach  = max(max_reach,nums[i]+i);
-            
-            if(curr_reach == i)
-            {
-                step++;
-                curr_reach = max_reach;
-            }
+        int  n = nums.size();
+        int des = n-1;
         
-            
-        }
+       vector<long long>dp(n,-1);
         
-        return step;
+      return fun(nums,0,dp,des);
         
     }
 };
