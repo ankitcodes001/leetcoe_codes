@@ -1,6 +1,6 @@
 class Solution {
 public:
-    
+    /*
     long long fun(vector<int>&nums,int curr,vector<long long>&dp,int des)
     {
         if(curr == des)
@@ -29,6 +29,7 @@ public:
         
     }
     
+    */
     
     int jump(vector<int>& nums) {
         //greedy ---> o(n)
@@ -37,9 +38,22 @@ public:
         int  n = nums.size();
         int des = n-1;
         
-       vector<long long>dp(n,-1);
-        
-      return fun(nums,0,dp,des);
-        
+     int max_reach  =0 ;
+     int curr = 0;
+     int step =0 ;
+     for(int i = 0;i<n-1;i++)
+     {
+         max_reach = max(nums[i]+i,max_reach);
+         
+         if(i == curr)
+         {
+             step++;
+             curr = max_reach;
+         }
+         
+         
+         
+     }
+        return step;
     }
 };
