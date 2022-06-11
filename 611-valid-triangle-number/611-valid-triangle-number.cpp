@@ -2,8 +2,6 @@ class Solution {
 public:
     int triangleNumber(vector<int>& nums) {
         
-       
-        
         int n = nums.size();
         int ans = 0;
         sort(nums.begin(),nums.end());
@@ -16,8 +14,7 @@ public:
             {
                 if(nums[l]+nums[h] > nums[i])
                 {  
-                    ans+= (h-l);
-                    
+                    ans+= h-l;
                     h--;
                 }
                 else
