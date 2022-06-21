@@ -12,32 +12,33 @@ public:
     }
         
         
-    int index1 = -1;
-    for(int i  = a.size()-1;i>0;i--)
+    int breakpoint  = -1;
+    for(int i = a.size()-1;i>0;i--)
     {
-        if(a[i] > a[i-1])
+        if(a[i]>a[i-1])
         {
-            index1 = i-1;
+            breakpoint  = i-1;
             break;
         }
     }
         
-        if(index1 <  0)
+        if(breakpoint <  0)
         {
             reverse(a.begin(),a.end());
             return;
         }
+        
+        
     
-        for(int i  = a.size()-1;i>=0;i--)
+    for(int i = a.size()-1;i>=0;i--)
+    {
+        if(a[i]>a[breakpoint])
         {
-        if(a[i] > a[index1])
-        {
-            swap(a[i],a[index1]);
-            reverse(a.begin()+index1+1,a.end());
+            swap(a[i],a[breakpoint]);
+            reverse(a.begin()+breakpoint+1,a.end());
             break;
         }
-       }
-        
+    }
     
     
     }
