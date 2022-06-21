@@ -6,10 +6,10 @@ public:
     // find element first greater elemet than breakpoint
     //->swap both element and reverse(index+1, last)
     // and since we know that elemet after breakpoint so simply revese;    
-    // if(a.size() == 1 || a.size() == 0)
-    // {
-    //     return;
-    // }
+    if(a.size() == 1 || a.size() == 0)
+    {
+        return;
+    }
         
         
     int index1 = -1;
