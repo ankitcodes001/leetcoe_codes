@@ -4,35 +4,32 @@ public:
     
     // space  = O(2^n)+O(n)
     // time  = O(2^n)
-    vector<vector<int>>v;
+    vector<vector<int>>ans;
     vector<int>temp;
-    void fun(vector<int>&a,int t,int i)
-    {
-        if(t <0 || i == a.size())
-        {
-            
-            return ;
-        }
+    
+    void fun(vector<int>&nums,int t,int start)
+    { 
+       if(t == 0)
+       {
+           ans.push_back(temp);
+           return;
+       }
+       if(t<0)
+           return;
         
-        if(t == 0)
-        {v.push_back(temp);
-        return;
-         }
+      for(int i = start;i<nums.size();i++)
+      {
+          
+          temp.push_back(nums[i]);
+          fun(nums,t-nums[i],i);
+          temp.pop_back();
+      }
         
-        
-        
-        temp.push_back(a[i]);
-        fun(a,t-a[i],i);
-        
-        temp.pop_back();
-        fun(a,t,i+1);
-        
-        
-        
+    
     }
     vector<vector<int>> combinationSum(vector<int>& a, int t) {
-        //sort(a.begin(),a.end());
+     
         fun(a,t,0);
-        return v;
+        return ans;
     }
 };
