@@ -1,40 +1,37 @@
 class Solution {
 public:
+    vector<vector<int>>ans;
+    vector<int>curr;
     
-    
-    
-    // space = o(2^n)
-    //time = o(2^n)
-    vector<vector<int>>v;
-    vector<int>temp;
-    void fun(vector<int>&nums,int i,vector<int>temp)
+    void subset(vector<int>&nums,int start)
     {
-        if(i == nums.size())
-        {
-            v.push_back(temp);
-            return;
-        }
-        
-        
-        if(temp.empty() || temp.back()!= nums[i])
-        {
-            fun(nums,i+1,temp);
-        }
-           temp.push_back(nums[i]);  
-        fun(nums,i+1,temp);
        
-        
-        
-        
-        
+        ans.push_back(curr);
+            
+        for(int i = start;i<nums.size();i++)
+        {
+            if(i>start && nums[i] == nums[i-1])
+                continue;
+            curr.push_back(nums[i]);
+            subset(nums,i+1);
+            curr.pop_back();
+        }
         
         
     }
     vector<vector<int>> subsetsWithDup(vector<int>& nums) {
-        sort(nums.begin(),nums.end());
-        vector<int>temp;
-        fun(nums,0,temp);
-        return v;
+    // since we do not want duplicates
+    // in each level we ll trying to get only unique subset
+    // by putting one check if if(i>start && nums[i] == nums[i-1]) continue;
+    // to get this done we need to sort the array [1,2,2]
+     sort(nums.begin(),nums.end());
+     subset(nums,0);   
+     return ans;  
+        
+        
+        
+        
+        
         
     }
 };
