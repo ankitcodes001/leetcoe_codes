@@ -1,25 +1,12 @@
-class Solution {
-public:
-    int wiggleMaxLength(vector<int>& nums) {
-    // check the maximum number of valleys and peaks in array
+class Solution:
+    def wiggleMaxLength(self, nums: List[int]) -> int:
+        peak = 1
+        valley = 1
+
+        for i in range(1,len(nums)):
+            if nums[i] > nums[i-1] :
+                peak = valley+1
+            elif nums[i] < nums[i-1] :
+                valley = peak+1
         
-     int pos = 1,neg =1;
-     for(int i = 1;i<nums.size();i++)
-     {
-         if(nums[i] > nums[i-1])
-             pos = neg+1;
-         else if (nums[i] < nums[i-1])
-             neg = pos+1;
-       
-     }
-   
- return max(pos,neg);
-   
-    
-        
-        
-        
-        
-        
-    }
-};
+        return max(peak,valley)
