@@ -2,6 +2,8 @@ class Solution {
 public:
     int uniquePaths(int m, int n) {
         
+        // Since the robot can only move right and down, when it arrives at a point, it either arrives from left or above. If we use dp[i][j] for the number of unique paths to arrive at the point (i, j), then the state equation is dp[i][j] = dp[i][j - 1] + dp[i - 1][j]. Moreover, we have the base cases dp[0][j] = dp[i][0] = 1 for all valid i and j respectively.
+        
         int path[m][n];
         for(int i =0;i<m;i++)
         {
