@@ -26,29 +26,29 @@ public:
     }
     
     
-    void solve(vector<string>&chess,vector<vector<string>>&ans,int row)
+    int solve(vector<string>&chess,int row)
     {
         if(chess.size() == 0)
-            return;
+            return 0;
         if(row == chess.size())
         {
-            ans.push_back(chess);
-            return;
+            return 1;
         }
         
+        int sum = 0;
         
         for(int i= 0;i<chess[0].size();i++)
         {
             if(is_safe(chess,row,i))
             {
                 chess[row][i] = 'Q';
-                solve(chess,ans,row+1);
+                sum+= solve(chess,row+1);
                 chess[row][i] = '.';
             }
             
         }
         
-        
+        return sum;
         
     }
     
@@ -61,10 +61,9 @@ public:
             s+='.';
         }
         vector<string>chess(n,s);
-        vector<vector<string>>ans;
+       
+        return solve(chess,0);
         
-        solve(chess,ans,0);
-        return ans.size();
         
     }
 };
