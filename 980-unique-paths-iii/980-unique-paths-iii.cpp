@@ -2,9 +2,9 @@ class Solution {
 public:
  
         
-    int count_path(vector<vector<int>>&a,int x,int y,int count)
+    int count_path(vector<vector<int>>&a,int x,int y,int count,vector<vector<bool>>&vis)
     {  
-        if(x<0 || y<0 || x >= a.size() || y>= a[0].size() || a[x][y] == -1 )
+        if(x<0 || y<0 || x >= a.size() || y>= a[0].size() || a[x][y] == -1 || vis[x][y] == 1)
             return 0;
         
         if(a[x][y] == 2)
@@ -14,17 +14,17 @@ public:
             return 0;
         }
         
-        a[x][y] = -1;
+        vis[x][y] =1 ;
         
         int sum = 0;
         
         
-        sum+=count_path(a,x,y+1,count-1);
-        sum+=count_path(a,x,y-1,count-1);
-        sum+=count_path(a,x+1,y,count-1);
-        sum+=count_path(a,x-1,y,count-1);
+        sum+=count_path(a,x,y+1,count-1,vis);
+        sum+=count_path(a,x,y-1,count-1,vis);
+        sum+=count_path(a,x+1,y,count-1,vis);
+        sum+=count_path(a,x-1,y,count-1,vis);
         
-        a[x][y] = 0;
+        vis[x][y] = 0;
         return sum;
         
     
@@ -54,9 +54,10 @@ public:
             }
         }
         
+        vector<vector<bool>>vis(n,vector<bool>(m,0));
         
                
-        return count_path(a,sx,sy,count);
+        return count_path(a,sx,sy,count,vis);
         
         
         
