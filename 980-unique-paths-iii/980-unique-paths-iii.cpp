@@ -1,5 +1,15 @@
 class Solution {
 public:
+    
+//Time Complexity:
+
+// O(R*C) ==> To find the start, end, & number of non-obstacle squares.
+// O(4 * 3^(NonObstacleCells-2)) ==> DFS Helper will explore all possible paths. At each square (except start & end) we will explore at most 3 directions. At start we will explore 4 directions and at end we will stop the further exploration of that path. Here the number of non-obstacle cells is bounded by R*C.
+// Thus worst case Time Complexity = O(RC + 4 * 3^(RC - 2)) = O(3^(RC))
+// Space Complexity:
+
+// O(NonObstacleCells) --> For recursion stack. Here the number of non-obstacle cells is bounded by R*C.
+// Thus worst case Space Complexity = O(R*C)
  
         
     int count_path(vector<vector<int>>&a,int x,int y,int count,vector<vector<bool>>&vis)
