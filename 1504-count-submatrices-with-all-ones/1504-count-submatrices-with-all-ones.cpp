@@ -4,53 +4,49 @@ public:
         int n = a.size();
         int m = a[0].size();
         vector<vector<int>>dp(n,vector<int>(m,0));
-        // prefix column sum dp
-//          1 0 1       1 0 1
-//          1 1 0    => 2 1 0
-//          1 1 0       3 2 0
-     for(int i =0;i<n;i++)
-     {
-         for(int j =0;j<m;j++)
-         {
-             if(i==0)
-             {
-                 dp[i][j] = a[i][j];
-             }
-             else 
-             {
-                 if(a[i][j] == 1)
-                 dp[i][j] = dp[i-1][j]+1;
-             }
-             
-         }
-     }
-    
- // calculate the number of length till which dp[i][j]       
+        // prefix row sum
+        for(int i = 0;i<n;i++)
+        {
+            for(int j = 0;j<m;j++)
+            {
+                if(j==0)
+                {
+                    dp[i][j] = a[i][j];
+                    
+                }
+                else{
+                    if(a[i][j] == 1)
+                    {
+                        dp[i][j] = dp[i][j-1]+1;
+                        
+                        
+                    }
+                }
+                
+            }
+        }
         
-    int res = 0;
-    for(int i =0;i<n;i++)
-    {
+        int res = 0;
         for(int j = 0;j<m;j++)
         {
-            int x = dp[i][j];
-            
-            // column prefix sum only vertical sum
-            // now adding all the rows which can make the submatrixs
-    
-            
-            for(int k = j;k>=0 && dp[i][k]!=0 ;k--)
+            for(int i = 0;i<n;i++)
             {
-                x = min(x,dp[i][k]);
-                res+=x;
+                int x = dp[i][j];
+                //check till which column submatrix can be formed
+                for(int k = i;k>=0 && dp[k][j]!=0;k--)
+                {
+                    
+                    x= min(x,dp[k][j]);
+                    res+=x;
+                    
+                }
+                
+                
             }
-            
-            
         }
-    }
+        
         
         return res;
-        
-        
     
     }
 };
