@@ -1,10 +1,7 @@
 class Solution {
-public: bool flag;
-    unordered_map<int,bool>mp;
+public:
     bool solve(vector<int>&m,vector<int>&side,int i)
-    {   
-//         if(mp.find(i)!= mp.end())
-//             return mp[i];
+    {
         
         if(i==m.size())
         {
