@@ -8,12 +8,12 @@ public:
             return false;
         unordered_map<int,int>mp;
         for(int i =0;i<n;i++)
-        {  int rem = (a[i]%k + k)%k;
+        {  int rem = (a[i]%k+k)%k;
             mp[rem]++;
         }
         for(int i =0;i<n;i++)
         {
-             int rem = (a[i]%k + k)%k;
+             int rem = (a[i]%k+k)%k;
              if(2*rem == k)
              {
                  if(mp[rem]&1)
