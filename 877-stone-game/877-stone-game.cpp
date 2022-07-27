@@ -1,56 +1,30 @@
 class Solution {
 public:
-//     int dp[501];
-//     bool solve(vector<int>&nums,int i,int j)
-//     {
-       
-        
-           
+    int dp[501][501];
+    int solve(vector<int>&nums,int i,int j)
+    {
+        if(i>j)
+            return  0 ;
+        if( i == j)
+            return dp[i][j] = nums[i];
             
+        if(dp[i][j]!=-1)
+            return dp[i][j];
+        int a = nums[i]+solve(nums,i+1,j);
+        int b = nums[j]+solve(nums,i,j-1);
+        
+        return dp[i][j] = max(a,b);
         
         
-        
-        
-        
-//     }
+    }
     bool stoneGame(vector<int>& nums) {
-        
-//         int n = nums.size();
-//         if(n==0)
-//             return false;
-//         if(n == 1)
-//             return true;
-//         if(n == 2)
-//             return nums[0]>nums[1];
-        
-//        int a  = 0,b=0;
-            
-//         while(nums.size() > 0 )
-//         {
-//             a+= max(*nums.begin(),*nums.end());
-//             if(*nums.begin()>*nums.end())
-//              nums.erase(nums.begin());
-//             else
-//              nums.pop_back();
-           
-//            b+=max(*nums.begin(),*nums.end());
-//            if(*nums.begin()>*nums.end())
-//               nums.erase(nums.begin());
-//             else
-//              nums.pop_back();
-//         }
-//         memset(dp, -1,sizeof(dp));
-//         return solve(nums,0,n-1);
-        
-//         return a>b;
-return true;
-        
-        
-        
-        
-        
-        
-        
+    int n = nums.size();
+    memset(dp, -1,sizeof(dp));
+    int a = solve(nums,0,n-1);
+    int total = 0;
+    for(auto x : nums) total+=x;
+        int b = total-a;
+        return a > b; 
         
         
     }
