@@ -2,37 +2,32 @@ class Solution {
 public:
     int firstMissingPositive(vector<int>& nums) {
         
-//         
-//         int n = *max_element(nums.begin(),nums.end());
-//         for(int i  = 1;i<=n;i++)
+        
+//         for(auto x : a)
+//             cout<<x<<" ";
+//         for(int i  = 0;i<a.size();i++)
 //         {
-//             if(s.find(i)== s.end())
+//             if(i!=a[i])
 //                 return i;
 //         }
-        
-//         return n<0?1:n+1;
-     
-          
-           set<int>s(nums.begin(),nums.end());
-           vector<int>a;
-           a.push_back(0);
-           for(auto x :s)
-               if(x>0)
-                   a.push_back(x);
-        for(auto x : a)
-            cout<<x<<" ";
-        for(int i  = 0;i<a.size();i++)
+//         return a[a.size()-1]+1;
+     int i  = 0;
+     int n = nums.size();
+    while(i<nums.size())
+    {
+        if(nums[i]>=1 && nums[i]<=n && nums[i]!=  i+1 && nums[nums[i]-1]!= nums[i])
         {
-            if(i!=a[i])
-                return i;
+            swap(nums[i],nums[nums[i]-1]);
         }
-        return a[a.size()-1]+1;
-    
-        
-        
-    
-        
-        
-        
+        else
+        {
+            i++;
+        }
+    }
+    for(int j  = 0;j<nums.size();j++)
+         if(j+1!= nums[j])
+                return j+1;
+        return n+1;
+
     }
 };
