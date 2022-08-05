@@ -2,37 +2,23 @@ class Solution {
 public:
     int findKthPositive(vector<int>& arr, int k) {
         
-        /*
-        total number of missed elements till ith index = a[i]-i-1;
-        */
-        
-        int low =  0;
-        int high = arr.size()-1;
-        
-        // a[i]-i-1 total missed elements till ith index
-        // we can a decision on the basis of this
-        // if  k <  missed  move right
-        //  else move left
-        // return  low+k      
-        
-        while(low <=  high)
+        map<int,int>mp;
+        for(int i = 0;i<arr.size();i++)
         {
-            int mid = low+(high -low)/2;
-            if((arr[mid]-mid-1) < k) // if  missed element is lesser than  k
-            {
-                low = mid+1;
-                
+            mp[arr[i]]++;
+        }
+        int count  = 0;
+        for(int i = 1;;i++)
+        {
+            if(mp[i] == 0)
+            { 
+                count++;
+             
             }
-            else
-            {
-                high = mid-1;
-               
-            }
-        
+            if(count == k)
+                return i;
         }
         
-        return low+k;
-        
-        
+        return count;
     }
 };
