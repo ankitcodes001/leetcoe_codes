@@ -1,25 +1,28 @@
 class Solution {
 public:
-    void DFS(int i ,vector<int>adj[],vector<int>&vis,vector<int>&ans)
-    {
-        vis[i] = 1;
-        vector<int>visited_color(5,0);
-        for(auto x : adj[i])
-        {   if(vis[x] == 0)
-            DFS(x,adj,vis,ans);
-            visited_color[ans[x]] = 1;
-        }
-        
-        for(int j  = 1;j<=4;j++)
-        {
-            if(visited_color[j] == 0)
-            {
-                ans[i] = j;
-                break;
-            }
-        }
-        
-    }
+   void DFS(int node ,vector<int>adj[],vector<int>&vis,vector<int>&ans)
+   {
+       vis[node] = 1;
+       vector<int>visited_color(5,0);
+       for(auto i : adj[node])
+       {
+           if(vis[i] == 0)
+           {
+            DFS(i,adj,vis,ans);  
+           }
+           visited_color[ans[i]] = 1;
+       }
+       for(int i = 1;i<=5;i++)
+       {
+           if(visited_color[i] == 0)
+           {
+               ans[node] = i;
+                 
+            break;
+   
+           }
+       }
+   }
     vector<int> gardenNoAdj(int n, vector<vector<int>>& paths) 
     {
         vector<int>adj[n+1];
