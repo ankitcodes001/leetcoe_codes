@@ -1,44 +1,55 @@
 class Solution {
 public:
-  
-    bool DFS(int node,vector<int>&vis,vector<vector<int>>&graph,bool x ,vector<int>color)
+    bool  bipart = true;
+    void DFS(int node,vector<bool>&vis,vector<vector<int>>&graph,bool req_color,vector<int>&color)
     {
-        vis[node] = 1;
-        color[node] = x;
+//         if(vis[node])
+//         {
+//             if(color[node]!=req_color)
+//             {
+//                 bipart = false;
+//                 return;
+//             }
+//         }
+      
+        // if(color[node]!= req_color)
+        // {
+        //     bipart=false;
+        //         return;
+        // }
+          
+        vis[node] = true;
+        color[node]= req_color;
         for(auto i : graph[node])
         {
-            if(vis[i] == 0 )
+            if(vis[i] == false)
             {
-               if(DFS(i,vis,graph,x ^ 1 ,color) == false)
-                return false;
+                DFS(i,vis,graph,req_color xor 1,color);
             }
-            else{
-                
+            if(color[i] == req_color)
+            {
+                bipart = false;
+                    return;
+            }
             
-                if(color[i] == x)
-                return false;
-
-              }
         }
-        
-        return true;
         
     }
     bool isBipartite(vector<vector<int>>& graph) {
         
         int n = graph.size();
-        vector<int>vis(n,0);
+        vector<bool>vis(n,false);
         vector<int>col(n,-1);
         for(int i  = 0;i<n;i++)
         {
-            if(vis[i] == 0 && DFS(i,vis,graph,0,col) == false)
+            if(vis[i] == 0)
             {
-                return false;
+                DFS(i,vis,graph,0,col);
             }
         }
         
         
         
-        return true;
+        return bipart;
     }
 };
