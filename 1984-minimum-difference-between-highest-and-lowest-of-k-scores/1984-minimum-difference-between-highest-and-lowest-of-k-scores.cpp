@@ -7,14 +7,24 @@ public:
     int n = nums.size(); 
            
     sort(nums.begin(),nums.end());
-    int ans =  INT_MAX;
-    for(int i =0;i<nums.size()-k+1;i++)
-    {
-        ans = min(ans,nums[i+k-1]-nums[i]);
-    }
-        return ans;
-       
+   int i  = 0;
+        int j  = 0;
+        int ans = INT_MAX;
+        while(j<n)
+        {
+            if(j-i+1<k)
+            {
+                j++;
+            }
+            else if(j-i+1 == k)
+            {
+                ans = min(nums[j]-nums[i],ans);
+                i++;
+                j++;
+            }
+        }
         
+        return ans;
         
     }
 };
