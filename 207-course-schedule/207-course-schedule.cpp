@@ -5,7 +5,7 @@ public:
       vector<int>adj[n];
        for(auto x : p)
        {
-           adj[x[0]].push_back(x[1]);
+           adj[x[1]].push_back(x[0]);
        }
        queue<int>q;
        vector<int>indegree(n+1,0);
