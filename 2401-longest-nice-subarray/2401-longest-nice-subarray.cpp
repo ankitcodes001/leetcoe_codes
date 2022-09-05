@@ -2,7 +2,7 @@ class Solution {
 public:
     void bitsmap(vector<int>&bits,int x,int op)
     {
-        for(int i  = 0;i<bits.size();i++)
+        for(int i  = bits.size()-1;i>=0;i--)
         {
             if(x & (1 <<i))
             {
