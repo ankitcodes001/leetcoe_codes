@@ -18,11 +18,15 @@ public:
          return NULL;
         
     
-     root->left =    pruneTree(root->left);
+     root->left =   pruneTree(root->left);
      root->right =  pruneTree(root->right);
      
-     if(root->left == NULL && root->right == NULL && root->val == 0)
-       return NULL;        
+     // if(root->left == NULL && root->right == NULL && root->val == 0)
+     //   return NULL;  
+        
+        if(root->left || root->right ) return root ;
+        
+        if(root->val == 0) return NULL ;
       
     return root;   
         
