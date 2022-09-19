@@ -1,47 +1,32 @@
 class Solution {
 public:
     
-    int findways(vector<int>&coin,int n ,int t,vector<vector<int>>&dp)
+    int coinChange(vector<int>& coin, int s) {
+    int n = coin.size();
+    int dp[n+1][s+1];
+    for(int i  = 0;i<=n;i++)
     {
-        if(n <= 0)
-            return INT_MAX-1;
-        if(t == 0)
-            return 0;
-        if(dp[n][t]!=-1)
-            return dp[n][t];
-        
-        if(coin[n-1]>t)
+        for(int j = 0;j<=s;j++)
         {
-            return dp[n][t] = findways(coin,n-1,t,dp);
+            if(i == 0 || j == 0)
+            dp[i][j] = (j == 0)?0:INT_MAX-1;
         }
-        else
-        {
-            return dp[n][t] = min(findways(coin, n-1,t,dp) , 1+findways(coin, n, t-coin[n-1],dp));
-        }
-        
-        
-        
-        
     }
-
-    
-    
-    int coinChange(vector<int>& coin, int amount) {
+    for(int i = 1;i<=n;i++)
+    {
+        for(int j  = 1;j<=s;j++)
+        {
+            if(coin[i-1]<=j)
+            {
+                dp[i][j] = min(1+dp[i][j-coin[i-1]],0+dp[i-1][j]);
+            }
+            else
+                dp[i][j] = 0+dp[i-1][j];
+        }
+    }
         
-        
-        int n = coin.size();
-        
-        vector<vector<int>>dp(n+1,vector<int>(amount+1, -1));
-        
-        
-        int res  =findways(coin, n, amount,dp);
-        
-        if(res == INT_MAX || res == INT_MAX-1)
-         return -1;
-        
-        return res;
-        
-        
+    if(dp[n][s] == INT_MAX-1) return -1;
+        return dp[n][s];
         
     }
 };
