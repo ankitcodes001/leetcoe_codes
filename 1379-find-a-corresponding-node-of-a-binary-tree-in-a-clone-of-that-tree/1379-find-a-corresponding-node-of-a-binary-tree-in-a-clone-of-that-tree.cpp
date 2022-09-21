@@ -17,7 +17,9 @@ public:
           return cloned;
       if(target->val == cloned->val)
           ans = cloned;  
+      if(cloned->left)  
       getTargetCopy(original,cloned->left,target);
+      if(cloned->right)
       getTargetCopy(original,cloned->right,target);
       return ans;  
     }
