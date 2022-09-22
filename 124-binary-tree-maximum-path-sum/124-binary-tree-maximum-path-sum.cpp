@@ -20,13 +20,10 @@ public:
         
         int lh = solve(root->left,result);
         int rh  = solve(root->right,result);
-        
-        int max_sum = max(max(lh,rh)+root->val,root->val);
-        int ms2_compare = max(max_sum,root->val+lh+rh);
-        
-        result = max(result,ms2_compare);
-        
-        return max_sum;
+        int max_sum_curr_node_in_path =  max(max(lh,rh)+root->val,root->val);
+        int max_sum_when_curr_node_is_root = max(max_sum_curr_node_in_path,root->val+rh+lh);
+        result = max(result,max_sum_when_curr_node_is_root);
+        return max_sum_curr_node_in_path;
         
     }
     int maxPathSum(TreeNode* root) {
