@@ -1,35 +1,26 @@
 class Solution {
 public:
-    
-    
-    // space  = O(2^n)+O(n)
-    // time  = O(2^n)
-    vector<vector<int>>ans;
+    set<vector<int>>ans;
     vector<int>temp;
-    
-    void fun(vector<int>&nums,int t,int start)
-    { 
-       if(t == 0)
-       {
-           ans.push_back(temp);
-           return;
-       }
-       if(t<0)
-           return;
-        
-      for(int i = start;i<nums.size();i++)
-      {
-          
-          temp.push_back(nums[i]);
-          fun(nums,t-nums[i],i);
-          temp.pop_back();
-      }
-        
-    
+    void solve(vector<int>&nums ,int idx,int sum)
+    {   if(idx == nums.size() || sum < 0)
+        return;
+        if(sum == 0)
+        {
+            //sort(temp.begin(),temp.end());
+            ans.insert(temp);
+            return;
+        }
+        temp.push_back(nums[idx]);
+        solve(nums,idx,sum-nums[idx]);
+        temp.pop_back();
+        solve(nums,idx+1,sum);
     }
-    vector<vector<int>> combinationSum(vector<int>& a, int t) {
-     
-        fun(a,t,0);
-        return ans;
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+     vector<vector<int>>v;
+     solve(candidates,0,target);
+     for(auto it:ans)
+         v.push_back(it);
+        return v;
     }
 };
