@@ -11,14 +11,13 @@ public:
         unordered_map<int,int>mp;
         for(int j = i;j<nums.size();j++)
         {
-            if(mp[nums[j]] == 0)
-            {
-                swap(nums[i],nums[j]);
-                solve(i+1,nums);
-                swap(nums[j],nums[i]);
-            }
-            mp[nums[j]]++;
-            
+           if(mp[nums[j]] == 0)
+           {
+            swap(nums[i],nums[j]);
+            solve(i+1,nums);
+            swap(nums[i],nums[j]);
+           }
+          mp[nums[j]]++;
         }
         
         
