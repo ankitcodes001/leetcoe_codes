@@ -1,68 +1,37 @@
 class Solution {
 public:
-    
-   
-    bool isValidSudoku(vector<vector<char>>& a) {
-        
-        
+    bool is_safe(vector<vector<char>>&board,int row,int col,char x)
+    {
+        int n_row = 3*(row/3);
+        int n_col = 3*(col/3);
+        for(int i =0;i<9;i++)
+        {
+           if(board[i][col] == x)
+               return false;
+          if(board[row][i] == x)
+              return false;
+          if(board[n_row+(i/3)][n_col+(i%3)] == x)
+                return false;
+        }
+        return true;
+    }
+    bool isValidSudoku(vector<vector<char>>& board) {
         for(int i = 0;i<9;i++)
-        {  
-            set<char>s;
-            for(int j  = 0;j<9;j++)
+        {
+            for(int j = 0;j<9;j++)
             {
-            if(a[i][j]!= '.')
-            {
-              if(s.find(a[i][j])!= s.end())
-                 return false;
-              s.insert(a[i][j]);
+                if(board[i][j]!= '.')
+                {
+                    char  temp = board[i][j];
+                    board[i][j] = '*';
+                    if(is_safe(board,i,j,temp) == false)
+                        return false;
+                    board[i][j] = temp;
+                }
             }
         }
-        }    
-            
-            
-        
-        for(int i = 0;i<9;i++)  
-        {   set<char>s;
-            for(int j  = 0;j<9;j++)
-            {
-                
-            if(a[j][i]!= '.')
-             {
-               if(s.find(a[j][i])!= s.end())
-                  return false;
-               s.insert(a[j][i]);
-             }
-            }
-        }  
-            
-            
-     for(int i  = 0;i<9;i+=3)
-     {
-         for(int j  = 0;j<9;j+=3)
-         {
-             set<char>s;
-             for(int k =i ;k<3+i;k++)
-             {
-                 for(int l = j;l<3+j;l++)
-                 {
-                     
-                     if(a[k][l]!= '.')
-                     {
-                         if(s.find(a[k][l])!= s.end())
-                             return false;
-                         s.insert(a[k][l]);
-                     }
-                     
-                 }
-             }
-             
-         }
-     }
-     
-    return true;        
-            
-    
         
         
+     return true;   
     }
 };
