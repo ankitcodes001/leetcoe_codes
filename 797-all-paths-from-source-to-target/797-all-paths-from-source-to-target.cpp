@@ -1,31 +1,26 @@
 class Solution {
 public:
+    void dfs(vector<vector<int>>&graph,vector<vector<int>>&ans,vector<int>&temp,int node)
+    {   
+        if(node == graph.size()-1)
+        {
+            ans.push_back(temp);
+            return;
+        }
+        
+        for(auto x : graph[node])
+        {
+            temp.push_back(x);
+            dfs(graph,ans,temp,x);
+            temp.pop_back();
+        }
+        
+    }
    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
-     queue<vector<int>>q;
-     q.push({0});
-     vector<vector<int>>ans;  
-     while(q.size() > 0)
-     {
-         auto it = q.front();
-         q.pop();
-         
-         for(auto x : graph[it.back()])
-         {   
-             it.push_back(x);
-          
-             if(x == graph.size()-1)
-             {
-                 ans.push_back(it);
-             }
-              else
-              {
-                  q.push(it);
-                  
-              }
-              it.pop_back();
-         }
-     }
-  
-       return ans;
+    vector<vector<int>>ans;
+    vector<int>temp;
+    temp.push_back(0);
+    dfs(graph,ans,temp,0);
+    return ans;
     }
 };
