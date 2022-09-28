@@ -18,10 +18,10 @@ public:
         {
             if(coin[i-1]<=j)
             {
-                dp[i][j] = min(1+dp[i][j-coin[i-1]],0+dp[i-1][j]);
+                dp[i][j] = min(1+dp[i][j-coin[i-1]],dp[i-1][j]);
             }
             else
-                dp[i][j] = 0+dp[i-1][j];
+                dp[i][j] = dp[i-1][j];
         }
     }
         
