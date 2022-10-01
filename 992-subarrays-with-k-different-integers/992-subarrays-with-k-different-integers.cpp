@@ -24,8 +24,12 @@ public:
                     mp.erase(nums[i]);
                 i++;
             }
+            
+            if(mp.size() <= k)
+            {   
             ans+= j-i+1;
             j++;
+             }
         }
     }
       return ans;  
