@@ -7,11 +7,12 @@ public:
     int j = 0;
     int ans = 0;
     int n = nums.size();
+        
     while(j<n)
     {
         mp[nums[j]]++;
-        if(mp.size() <= k)
-        {   
+        if(mp.size()<=k)
+        {
             ans+= j-i+1;
             j++;
         }
@@ -21,16 +22,16 @@ public:
             {
                 mp[nums[i]]--;
                 if(mp[nums[i]] == 0)
-                    mp.erase(nums[i]);
+                mp.erase(nums[i]);
                 i++;
             }
-            
-            if(mp.size() <= k)
-            {   
-            ans+= j-i+1;
-            j++;
-             }
+            if(mp.size()<=k)
+            {
+                ans+=j-i+1;
+                j++;
+            }
         }
+       
     }
       return ans;  
     }
