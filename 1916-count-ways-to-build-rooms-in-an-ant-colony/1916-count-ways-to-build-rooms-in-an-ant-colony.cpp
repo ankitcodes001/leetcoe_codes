@@ -5,18 +5,18 @@ public:
     vector<long long>ans,sz;
     vector<long long>fact;
     long long power(long long a,long long b){
-        long long ans=1;
-        while(b){
-            if(b&1){
-                b--;
-                ans=(ans*a)%mod;
-            }
-            else{
-                b=b>>1;
-                a=(a*a)%mod;
-            }
-        }
-        return ans;
+        
+        if(b == 0)
+            return 1;
+        long long temp = power(a,b/2);
+        long long even = (temp*temp)%mod;
+        if(b%2 == 0)
+            return even;
+        else
+            return (a*even)%mod;
+        
+        
+        
     }
     long long modinv(long long x){
         return power(x,mod-2);
