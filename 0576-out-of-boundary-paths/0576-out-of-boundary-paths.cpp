@@ -1,8 +1,9 @@
+#define ll long long
 class Solution {
 public:
-    long long mod = 1e9+7;
-    long long row,col;
-    long long dp[52][52][52];
+   ll mod = 1e9+7;
+    ll row,col;
+    ll dp[52][52][52];
     int solve(int i,int j,int k,int max_move)
     {
         if(i<=-1 || j<=-1|| i>=row || j>=col)
@@ -26,7 +27,7 @@ public:
        row = m;
         col = n;
         memset(dp,-1,sizeof(dp));
-        long long ans = solve(startRow,startColumn,0,maxMove);
+        ll ans = solve(startRow,startColumn,0,maxMove);
     return ans;
         
     }
