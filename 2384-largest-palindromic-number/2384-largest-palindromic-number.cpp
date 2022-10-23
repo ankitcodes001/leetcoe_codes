@@ -6,33 +6,29 @@ public:
      {
          mp[num[i]-'0']++;
      }
-     
-        string front =  "";
-        string back =  "";
-        for(int i = 9;i>=0;i--)
+     string front =  "";
+     string back =  "";
+    for(int i = 9;i>=0;i--)
+    {
+        if(i == 0 && front.size() == 0)
+            continue;
+        while(mp[i]>1)
         {
-            if(i == 0 && front.size() == 0)
-                continue;
-            while(mp[i]>1)
-            {
-                front+= to_string(i);
-                back+= to_string(i);
-                mp[i]-=2;
-            }
+            front += to_string(i);
+            back  += to_string(i);
+            mp[i] -= 2;
         }
-        
-        for(int i = 9;i>= 0;i--)
-        {
-            if(mp[i])
-            {
-                front+= to_string(i);
-                break;
-            }
-         
-        }
-        
-        reverse(back.begin(),back.end());
-        return front+back;
-        
+    }
+     for(int i = 9;i>=0;i--)
+     {
+         if(mp[i])
+         {
+             front+= to_string(i);
+             break;
+         }
+     }
+     reverse(back.begin(),back.end());
+     return front + back;
+    
     }
 };
