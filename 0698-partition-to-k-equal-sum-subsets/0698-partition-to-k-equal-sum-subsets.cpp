@@ -3,26 +3,25 @@ public:
     
   bool check(vector<int>&nums, vector<bool>&vis,int start,int curr,int target,int k)
   {
-      if(k == 1)
+      if(k ==  1)
           return true;
-     if(start>=nums.size()) //This line is important to avoid tle
+      if(start>=nums.size())
           return false;
-      
       if(curr == target)
       {
-        return check(nums,vis,0,0,target,k-1);
+          if(check(nums,vis,0,0,target,k-1))
+              return true;
       }
       
       for(int i = start;i<nums.size();i++)
       {
-          if(!vis[i] && curr+nums[i]<= target)
+          if(vis[i]== false && curr+nums[i]<=target)
           {
-           vis[i] = true;
-          
-          if(check(nums,vis,i+1,curr+nums[i],target,k)) return true;
-          vis[i]= false;    
-              
-          }       
+              vis[i] = true;
+              if(check(nums,vis,i+1,curr+nums[i],target,k))
+                  return true;
+              vis[i] = false;
+          }
       }
       
       return false;
@@ -39,9 +38,5 @@ public:
         vector<bool>vis(nums.size(),false);
         
         return check(nums,vis,0,0,sum/k,k);
-        
-        
-        
-        
     }
 };
