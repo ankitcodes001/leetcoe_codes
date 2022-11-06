@@ -4,32 +4,49 @@ public:
     {
         if(l>=r)
             return;
-        int i=l;
-        int j=mid+1;
-        vector<int>sorted;
-        while(i<=mid&&j<=r)
+        int i = l;
+        int j = mid+1;
+        vector<int>temp;
+        while(i<=mid && j<=r)
         {
-            if(nums[i]<=nums[j])
-                sorted.push_back(nums[i]),i++;
+            if(nums[i]<nums[j])
+            {
+                temp.push_back(nums[i]);
+                i++;
+            }
             else
-                sorted.push_back(nums[j]),j++;
+            {
+                temp.push_back(nums[j]);
+                j++;
+            }
+            
         }
         if(i>mid)
         {
             while(j<=r)
-                sorted.push_back(nums[j]),j++;
+            {
+                temp.push_back(nums[j]);
+                j++;
+            }
         }
         else
         {
             while(i<=mid)
-                sorted.push_back(nums[i]),i++;
-        }
-        int k=0;
-        for(int i=l;i<=r;i++)
-        {
-            nums[i]=sorted[k];
-            k++;
-        }
+            {
+                temp.push_back(nums[i]);
+                i++;
+            }
+        }    
+    int k  = 0;
+        
+    for(int i = l;i<=r;i++)
+    {
+        nums[i] = temp[k];
+        k++;
+    }
+        
+        
+        
     }
     void mergesort(int start,int end,vector<int>&nums)
     {
