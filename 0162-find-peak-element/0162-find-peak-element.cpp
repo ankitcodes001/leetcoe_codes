@@ -2,7 +2,7 @@ class Solution {
 public:
     int solve(int l,int r,vector<int>&a)
     {
-        while(l<r)
+        while(l<=r)
         {
             int mid = l+(r-l)/2;
             if(a[mid] > a[mid-1] && a[mid] > a[mid+1])
