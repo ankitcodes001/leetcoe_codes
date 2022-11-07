@@ -1,51 +1,45 @@
 class Solution {
 public:
-    void merge(vector<int>&nums,int l,int mid,int r)
+    void merge(vector<int>&a,int l,int mid,int r)
     {
-        if(l>=r)
-            return;
         int i = l;
-        int j = mid+1;
-        vector<int>temp;
-        while(i<=mid && j<=r)
+        int j = mid;
+        int k = l;
+        int n = a.size();
+        int temp[n];
+        while(i<=mid-1 && j<=r)
         {
-            if(nums[i]<nums[j])
+            if(a[i]<=a[j])
             {
-                temp.push_back(nums[i]);
+                temp[k] = a[i];
                 i++;
+                k++;
             }
             else
             {
-                temp.push_back(nums[j]);
+                temp[k] = a[j];
                 j++;
-            }
-            
-        }
-        if(i>mid)
-        {
-            while(j<=r)
-            {
-                temp.push_back(nums[j]);
-                j++;
+                k++;
             }
         }
-        else
+        
+        while(i<=mid-1)
         {
-            while(i<=mid)
-            {
-                temp.push_back(nums[i]);
-                i++;
-            }
-        }    
-    int k  = 0;
+            temp[k] = a[i];
+            i++;
+            k++;
+        }
         
-    for(int i = l;i<=r;i++)
-    {
-        nums[i] = temp[k];
-        k++;
-    }
-        
-        
+        while(j<=r)
+        {
+            temp[k] = a[j];
+            j++;
+            k++;
+        }
+        for(int t = l;t<=r;t++)
+        {
+            a[t] = temp[t];
+        }
         
     }
     void mergesort(int start,int end,vector<int>&nums)
@@ -56,7 +50,7 @@ public:
         int mid = (start+end)/2;
         mergesort(start,mid,nums);
         mergesort(mid+1,end,nums);
-        merge(nums,start,mid,end);
+        merge(nums,start,mid+1,end);
         
     }
     vector<int> sortArray(vector<int>& nums) {
