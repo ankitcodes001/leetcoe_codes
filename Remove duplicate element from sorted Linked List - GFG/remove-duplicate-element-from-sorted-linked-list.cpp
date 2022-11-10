@@ -73,7 +73,9 @@ Node *removeDuplicates(Node *head)
     {
         if(temp->data == temp->next->data)
         {
-            temp->next = temp->next->next;
+           Node* duplicate = temp->next;
+           temp->next = temp->next->next;
+           delete duplicate;
         }
         else
         temp = temp->next;
